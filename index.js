@@ -20,4 +20,4 @@ app.get('/', function(req, res) {
   res.render('index', {data: 1});
 });
 
-app.listen(8080);
+app.listen(6001);
