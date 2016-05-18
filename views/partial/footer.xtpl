@@ -1,0 +1,25 @@
+<div class="footer container">
+  <p class="threat">
+    「如果不遵守安全规范，那么地球上最后一滴水将是你的眼泪」<span class="author">—— 哲斯·沃索德</span>
+  </p>
+  <ul class="f-links">
+    <li style="margin-right: 10px;">
+      © 2016 <a href="http://fed.taobao.net " target="_blank">Taobao FED</a>
+    </li>
+    <li><a href="http://tms.alibaba-inc.com/" target="_blank">TMS</a></li>
+    <li class="muted">·</li>
+    <li><a href="http://ems.alibaba-inc.com/" target="_blank">EMS</a></li>
+    <li class="muted">·</li>
+    <li><a href="http://play.alibaba-inc.com/" target="_blank">玩法平台</a></li>
+    <li class="muted">·</li>
+    <li><a href="http://duang.alibaba-inc.com/" target="_blank">Duang</a></li>
+    <li class="muted">·</li>
+    <li><a href="http://zhiliao.alibaba-inc.com/" target="_blank">知了问卷</a></li>
+    <li class="muted">·</li>
+    <li><a href="http://uData.taobao.net/" target="_blank">uData</a></li>
+    <li class="muted">·</li>
+    <li><a href="http://designboard.alibaba-inc.com/" target="_blank">设计板</a></li>
+    <li class="muted">·</li>
+    <li><a href="https://alidemo.cn/" target="_blank">DEMO</a></li>
+  </ul>
+</div>
