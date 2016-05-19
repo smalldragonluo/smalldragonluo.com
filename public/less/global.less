@@ -1,0 +1,179 @@
+/*
+ * 全局样式, 包含头部与自定义通用组件
+ */
+
+body {
+
+}
+
+// 头部
+.header {
+  border-bottom: 1px solid #d1d1d1;
+
+  .wrap {
+
+  }
+
+  #logo {
+    display: inline-block;
+    padding: 10px 0;
+    vertical-align: top;
+  }
+
+  .logo {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    display: inline-block;
+    vertical-align: top;
+    background: url(/assets/images/avatar.jpg);
+    background-size: cover;
+  }
+
+  .nav {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 26px;
+
+    li {
+      display: inline-block;
+
+      a {
+        padding: 18px 8px 15px 8px;
+        border-bottom: 4px solid transparent;
+        color: #333;
+        font-size: 18px;
+
+        &:hover {
+          background: transparent;
+        }
+      }
+
+      &.current {
+        a {
+          border-bottom: 4px solid #0061cf;
+        }
+      }
+    }
+  }
+}
+
+// footer
+.footer {
+  padding: 20px 0;
+  text-align: center;
+  border-top: 1px solid #d1d1d1;
+
+  .threat {
+    font-family: 'STFangsong', serif;
+    font-size: 18px;
+
+    .author {
+      font-size: 14px;
+    }
+  }
+
+  .f-links {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      display: inline-block;
+      padding: 0 5px;
+      margin-top: 8px;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #999;
+
+      a {
+        color: #999;
+      }
+
+      &.muted {
+        padding: 0;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      }
+    }
+  }
+}
+
+// 自定义通用样式
+.c-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #6292cb;
+  margin-bottom: 14px;
+
+  .glyphicon {
+    font-size: 16px;
+    margin-left: 6px;
+  }
+}
+
+.c-title-sub {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #444;
+
+  .glyphicon {
+    font-size: 16px;
+    margin-left: 6px;
+  }
+}
+
+.c-title-s {
+  padding: 10px 6px;
+  color: #6a6a6a;
+  font-size: 18px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.list {
+  padding: 0;
+
+  li {
+    list-style: none;
+    line-height: 28px;
+    color: #444;
+
+    a {
+      color: #444;
+
+      &:hover {
+        color: #6292cb;
+      }
+    }
+  }
+}
+
+.c-alert {
+  position: fixed;
+  // 大于 head bar
+  z-index: 2000;
+  left: 50%;
+  top: 30%;
+  opacity: 0;
+  white-space: nowrap;
+
+  -webkit-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+
+  &.c-show {
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    -webkit-transform: translate(-50%, -10px);
+    transform: translate(-50%, -10px);
+    opacity: 1;
+  }
+
+  &.c-hide {
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    opacity: 0;
+    -webkit-transform: translate(-50%, -20px);
+    transform: translate(-50%, -20px);
+  }
+}

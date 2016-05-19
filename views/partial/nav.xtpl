@@ -1,0 +1,40 @@
+<!-- navigation begin-->
+<div class="header">
+  <div class="wrap container">
+    <a id="logo" href="/" title="smalldragonluo">
+      <span class="logo"></span>
+    </a>
+    <ul class="J_nav nav">
+      <li>
+        <a href="/" title="首页">
+          首页
+        </a>
+      </li>
+      <li>
+        <a href="/about" title="关于">
+          关于
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<script>
+  $(function() {
+    var $items = $('.J_nav a');
+
+    if (location.pathname === '/') {
+      $($items[0]).parent().addClass('current');
+      return;
+    }
+
+    $items.each(function(i, item) {
+      var $item = $(item);
+      var href = $item.attr('href');
+
+      if (href !== '/' && location.pathname.match(new RegExp('^' + href))) {
+        $item.parent().addClass('current');
+      }
+    });
+  });
+</script>
+<!--navigation end-->
