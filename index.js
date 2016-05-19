@@ -19,11 +19,11 @@ app.set('view engine', 'xtpl');
 app.get('/', function(req, res) {
   res.render('index', {data: 1});
 });
+
 app.get('/about', function(req, res) {
   res.json({
     message: '敬请期待',
     data: new Date()
   });
 });
-
 app.listen(6001);
