@@ -10,7 +10,8 @@ var path = require('path');
 var app = express();
 
 // static
-app.use(express.static(path.join(__dirname)));
+//app.use(express.static(path.join(__dirname)));
+app.use(express.static('/Users/smalldragonluo/Downloads/app-20517/www'));
 
 // view
 app.set('views', './views');
