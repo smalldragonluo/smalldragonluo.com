@@ -95,7 +95,7 @@
       }
 
       function basicLoad(location) {
-        var possible = ['kong'];
+        var possible = ['zl2'];
         var file = '/assets/images/' + possible[Math.floor(Math.random() * possible.length)] + '.jpg';
         return {
           file: file,
