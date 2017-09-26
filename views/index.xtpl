@@ -403,16 +403,16 @@
 
 {{#block ("script")}}
 <script src="/assets/js/index.min.js"></script>
-<script>
-  var disqus_shortname = 'http-smalldragonluo-com';
-  var disqus_url = 'http://smalldragonluo.com' + location.pathname;
+<!--<script>-->
+  <!--var disqus_shortname = 'http-smalldragonluo-com';-->
+  <!--var disqus_url = 'http://smalldragonluo.com' + location.pathname;-->
 
-  (function() {
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//go.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
+  <!--(function() {-->
+    <!--var dsq = document.createElement('script');-->
+    <!--dsq.type = 'text/javascript';-->
+    <!--dsq.async = true;-->
+    <!--dsq.src = '//go.disqus.com/embed.js';-->
+    <!--(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);-->
+  <!--})();-->
+<!--</script>-->
 {{/block}}
