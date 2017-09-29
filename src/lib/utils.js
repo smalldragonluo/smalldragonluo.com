@@ -6,7 +6,7 @@
 'use strict';
 
 var minPageNum = 10;
-var maxPageNum = 50;
+var maxPageNum = 100;
 
 module.exports = {
   pagination: function(pageNum, pageSize) {
@@ -24,7 +24,7 @@ module.exports = {
     }
 
     pageNum = Math.max(pageNum, 1);
-    pageSize = Math.min(Math.max(minPageNum), maxPageNum);
+    pageSize = Math.min(Math.max(minPageNum, pageSize), maxPageNum);
 
     return {
       offset: (pageNum - 1) * pageSize,
