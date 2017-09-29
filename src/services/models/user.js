@@ -19,6 +19,11 @@ const user = sequelize.define('user', {
     type: Sequelize.STRING(20),
     field: 'name',
     allowNull: true
+  },
+  avatar: {
+    type: Sequelize.STRING(256),
+    field: 'avatar',
+    allowNull: true
   }
 }, {
   // add the timestamp attributes (updatedAt, createdAt)

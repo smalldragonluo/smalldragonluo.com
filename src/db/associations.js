@@ -9,7 +9,10 @@
 const user = require('../services/models/user');
 const content = require('../services/models/content');
 
-// 员工投票
+user.hasMany(content, {
+  foreignKey: 'creatorId'
+});
+
 content.belongsTo(user, {
   foreignKey: 'creatorId'
 });

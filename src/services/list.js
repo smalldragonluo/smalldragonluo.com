@@ -6,7 +6,12 @@
 'use strict';
 
 const utils = require('../lib/utils');
+const user = require('../services/models/user');
 const content = require('../services/models/content');
+const Sequelize = require('sequelize');
+
+// 创建关联关系
+require('../db/index');
 
 module.exports = {
   getList: function(queries) {
@@ -14,7 +19,7 @@ module.exports = {
       order: [
         ['createdAt', 'DESC']
       ],
-      plain: false
+      include: [user]
     }, utils.pagination(queries.pageNum, queries.pageSize)));
   },
   addContent: function(queries) {

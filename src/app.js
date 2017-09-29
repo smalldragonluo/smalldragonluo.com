@@ -11,7 +11,7 @@ var app = express();
 var router = express.Router();
 var configAPIRoutes = require('./routes');
 
-// static
+// static（local only，online we use nginx）
 app.use(express.static(path.join(__dirname, '../public/build')));
 
 // set view engine
