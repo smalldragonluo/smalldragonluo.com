@@ -24,12 +24,17 @@ const user = sequelize.define('user', {
     type: Sequelize.STRING(256),
     field: 'avatar',
     allowNull: true
+  },
+  openId: {
+    type: Sequelize.STRING(128),
+    field: 'openId',
+    allowNull: false
   }
 }, {
   // add the timestamp attributes (updatedAt, createdAt)
   timestamps: true,
   tableName: 'qq_user',
-  comment: 'employee table'
+  comment: 'user table'
 });
 
 module.exports = user;

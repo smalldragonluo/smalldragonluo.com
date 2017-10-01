@@ -18,6 +18,11 @@ app.use(express.static(path.join(__dirname, '../public/build')));
 app.set('views', './src/views');
 app.set('view engine', 'xtpl');
 
+// session
+app.use(require('./middlewares/session'));
+// accessLog
+app.use(require('./middlewares/accessLog'));
+
 // API routes
 app.use('/api', router);
 configAPIRoutes(app, router);

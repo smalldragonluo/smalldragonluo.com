@@ -8,7 +8,7 @@
 const utils = require('../lib/utils');
 const user = require('../services/models/user');
 const content = require('../services/models/content');
-const Sequelize = require('sequelize');
+// const Sequelize = require('sequelize');
 
 // 创建关联关系
 require('../db/index');

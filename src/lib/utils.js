@@ -5,8 +5,18 @@
 
 'use strict';
 
-var minPageNum = 10;
-var maxPageNum = 100;
+const minPageNum = 10;
+const maxPageNum = 100;
+const path = require('path');
+const winston = require('winston');
+
+winston.add(winston.transports.File, {filename: path.join(__dirname, '../../server.log')});
+// https://github.com/winstonjs/winston#logging-levels
+if (process.env.NODE_ENV === 'local') {
+  winston.level = 'verbose';
+} else {
+  winston.level = 'warn';
+}
 
 module.exports = {
   pagination: function(pageNum, pageSize) {
@@ -30,5 +40,6 @@ module.exports = {
       offset: (pageNum - 1) * pageSize,
       limit: pageSize
     }
-  }
+  },
+  logger: winston
 };
