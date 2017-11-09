@@ -5,6 +5,7 @@
 {{/block}}
 
 {{#block ("content")}}
+<img src="/assets/images/we-keep-silent-most-of-the-time.jpg">
 <div class="index-content">
   <p>绿葡萄对紫葡萄说：“快呼吸啊，笨蛋！”</p>
 

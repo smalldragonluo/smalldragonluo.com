@@ -9,7 +9,7 @@ const listService = require('../services/list');
 
 module.exports = {
   list: function(req, resp) {
-    listService.getList(req.query).then(function(data) {
+    listService.getListCache(req.query).then(function(data) {
       resp.json({
         success: true,
         data: data
