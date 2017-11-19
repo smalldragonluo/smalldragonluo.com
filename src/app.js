@@ -11,13 +11,6 @@ var app = express();
 var router = express.Router();
 var configAPIRoutes = require('./routes');
 
-// CORS（online assets we use nginx）
-app.use(function(req, res, next) {
-  if (req.headers.host && req.headers.host.match(/([^.]+\.)*?smalldragonluo.com/)) {
-    res.header('Access-Control-Allow-Origin', '*');
-  }
-  next();
-});
 // static（local only，online we use nginx）
 app.use(express.static(path.join(__dirname, '../public/build')));
 
