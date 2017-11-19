@@ -11,7 +11,7 @@ var app = express();
 var router = express.Router();
 var configAPIRoutes = require('./routes');
 
-app.all('/*', function(req, res, next) {
+app.use(function(req, res, next) {
   if (req.headers.host && req.headers.host.match(/([^.]+\.)*?smalldragonluo.com/)) {
     res.header('Access-Control-Allow-Origin', '*');
   }
