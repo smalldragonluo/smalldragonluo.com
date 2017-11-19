@@ -11,6 +11,16 @@ var app = express();
 var router = express.Router();
 var configAPIRoutes = require('./routes');
 
+// CORS（API and local assets, online assets we use nginx）
+app.use(function(req, res, next) {
+  if (req.headers.origin && req.headers.origin.match(/^https?\/\/([^.]+\.)*?smalldragonluo.com/)) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Expose-Headers', 'Content-Length');
+    res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'range');
+  }
+  next();
+});
 // static（local only，online we use nginx）
 app.use(express.static(path.join(__dirname, '../public/build')));
 
