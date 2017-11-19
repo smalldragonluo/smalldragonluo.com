@@ -11,6 +11,13 @@ var app = express();
 var router = express.Router();
 var configAPIRoutes = require('./routes');
 
+app.all('/*', function(req, res, next) {
+  if (req.headers.host && req.headers.host.match(/([^.]+\.)+?smalldragonluo.com/)) {
+    res.header('Access-Control-Allow-Origin', '*');
+  }
+  next();
+});
+
 // static（local only，online we use nginx）
 app.use(express.static(path.join(__dirname, '../public/build')));
 
@@ -43,4 +50,4 @@ app.get('/about', function(req, res) {
   });
 });
 
-app.listen(6001);
+app.listen(8080);
