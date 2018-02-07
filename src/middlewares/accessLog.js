@@ -1,6 +1,6 @@
 /**
  * @author 龙喜<xiaolong.lxl@alibaba-inc.com>
- * @description session
+ * @description logger
  */
 
 'use strict';
