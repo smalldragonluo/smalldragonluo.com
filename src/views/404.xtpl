@@ -1,0 +1,10 @@
+{{extend ("./layout/default-layout") }}
+
+{{#block ("assets")}}
+<link rel="stylesheet" href="/assets/css/index.min.css">
+{{/block}}
+
+{{#block ("content")}}
+<div class="index-content">
+  页面找不到了
+</div>
