@@ -41,10 +41,6 @@ app.get('/', function(req, res) {
   res.render('index', {});
 });
 
-app.get('/404', function(req, res) {
-  res.render('404', {});
-});
-
 app.get('/koala', function(req, res) {
   res.render('koala', {});
 });
