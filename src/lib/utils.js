@@ -6,7 +6,7 @@
 'use strict';
 
 const minPageNum = 10;
-const maxPageNum = 100;
+const maxPageNum = 200;
 const path = require('path');
 const winston = require('winston');
 

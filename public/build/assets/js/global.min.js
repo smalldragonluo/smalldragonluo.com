@@ -112,3 +112,18 @@ Popup.prototype = {
   }
 };
 
+// rem 适配
+$(function() {
+  $(window).on('resize', setFontSize).trigger('resize');
+
+  function setFontSize() {
+    var fontSize = 37.5;
+
+    if (navigator.userAgent.match(/pad|mobile/i)) {
+      $('meta[name="viewport"]').attr('content', `width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no`);
+      fontSize = window.innerWidth / 10;
+    }
+
+    $('html').css('font-size', fontSize + 'px');
+  }
+});

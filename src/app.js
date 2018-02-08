@@ -5,11 +5,13 @@
 
 'use strict';
 
-var express = require('express');
-var path = require('path');
-var app = express();
-var router = express.Router();
-var configAPIRoutes = require('./routes');
+const express = require('express');
+const path = require('path');
+const app = express();
+const router = express.Router();
+const configAPIRoutes = require('./routes');
+const listService = require('./services/list');
+const mountRenderer = require('./lib/renderer');
 
 // CORS（API and local assets, online assets we use nginx）
 app.use(function(req, res, next) {
@@ -24,8 +26,7 @@ app.use(function(req, res, next) {
 app.use(express.static(path.join(__dirname, '../public/build')));
 
 // set view engine
-app.set('views', './src/views');
-app.set('view engine', 'xtpl');
+mountRenderer(app);
 
 // session
 app.use(require('./middlewares/session'));
@@ -38,7 +39,12 @@ configAPIRoutes(app, router);
 
 // page routes
 app.get('/', function(req, res) {
-  res.render('index', {});
+  req.query.pageSize = 100;
+  listService.getListCache(req.query).then(function(data) {
+    res.render('index', {
+      list: data
+    });
+  });
 });
 
 app.get('/koala', function(req, res) {
