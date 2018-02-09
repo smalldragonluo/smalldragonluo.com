@@ -27,6 +27,45 @@ $(function() {
   `);
 
   $('.post-list').append(renderer(pageData));
+
+  // 瀑布流
+  var ref;
+  var active = true;
+  var loading = false;
+
+  $(document).on('scroll', ref = throttle(function(e) {
+    var dH = $(document).height();
+    var sT = $(window).scrollTop();
+    var wH = $(window).height();
+
+    var bottomLeft = dH - sT - wH;
+
+    if (active && !loading && bottomLeft < getPxByRem(1254 / 75)) {
+      loadItems();
+    }
+  }, 500, null, true));
+
+  function loadItems() {
+    loading = true;
+
+    self.loadMore(function(data) {
+      // 没有更多，取消绑定
+      if (!data.words.length) {
+        $(document).off('scroll', ref);
+        self.$container.find('.list').append('<li class="no-more">亲，已经看光光啦~</li>');
+        return;
+      }
+
+      if (self.rendered) {
+        _renderItems(data);
+      } else {
+        self.render(data, function() {
+          self.rendered = true;
+          _renderItems(data);
+        });
+      }
+    });
+  }
 });
 
 /**
@@ -40,7 +79,7 @@ function getRecentTime(date, level) {
     level = 0;
   }
 
-  let now = new Date();
+  var now = new Date();
 
   switch (level) {
     case 2:
@@ -49,10 +88,10 @@ function getRecentTime(date, level) {
       return formatDate(date, 'M月d日');
     case 0:
       if (now.getFullYear() === date.getFullYear()) {
-        let isInOneDay = (now.getMonth() === date.getMonth()) && (now.getDate() === date.getDate());
+        var isInOneDay = (now.getMonth() === date.getMonth()) && (now.getDate() === date.getDate());
 
         if (isInOneDay) {
-          let minutes = Math.floor((now.getTime() - date.getTime()) / 1000 / 60);
+          var minutes = Math.floor((now.getTime() - date.getTime()) / 1000 / 60);
 
           if (minutes < 1) {
             return '刚刚';
