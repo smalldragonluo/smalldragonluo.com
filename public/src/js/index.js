@@ -5,6 +5,8 @@
 
 'use strict';
 
+require('../less/index.less');
+
 $(function() {
   var pageData = $('.J_PageData').data('page-data');
 
