@@ -5,21 +5,6 @@
 
 'use strict';
 
-// rem 适配
-$(function() {
-  $(window).on('resize', setFontSize).trigger('resize');
-
-  function setFontSize() {
-    var fontSize = 37.5;
-
-    if (navigator.userAgent.match(/pad|mobile/i)) {
-      $('meta[name="viewport"]').attr('content', `width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no`);
-      fontSize = window.innerWidth / 10;
-    }
-
-    $('html').css('font-size', fontSize + 'px');
-  }
-});
 
 // 弹出样式
 function Popup() {
@@ -128,42 +113,4 @@ Popup.prototype = {
   }
 };
 
-// 节流阀 global
-function throttle(fn, interval, context, accurate) {
-  var lastTime, timeout;
-
-  if (accurate) {
-    return function() {
-      clearTimeout(timeout);
-
-      var currentTime = new Date().getTime();
-      var args = arguments;
-
-      timeout = setTimeout(function() {
-        fn.apply(context || null, Array.prototype.slice.call(args));
-        lastTime = currentTime;
-      }, interval - (currentTime - (lastTime || currentTime - interval)));
-    };
-  } else {
-    return function() {
-      var currentTime = new Date().getTime();
-      var args = arguments;
-
-      if (!lastTime || currentTime - lastTime >= interval) {
-        fn.apply(context, Array.prototype.slice.call(args));
-        lastTime = currentTime;
-      }
-    };
-  }
-}
-
-// 根据 rem 获取 px global
-function getPxByRem(rem) {
-  try {
-    var fontSize = parseFloat(getComputedStyle(document.documentElement)['font-size']);
-
-    return rem * fontSize;
-  } catch (e) {
-    return rem * 32;
-  }
-}
+module.exports = Popup;
