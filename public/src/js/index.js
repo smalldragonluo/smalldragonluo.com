@@ -5,7 +5,6 @@
 
 'use strict';
 
-require('../less/bootstrap-3.3.5/less/bootstrap.less');
 require('../less/global.less');
 require('../less/index.less');
 require('./lib/base');

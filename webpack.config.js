@@ -11,12 +11,12 @@ const webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const buildEnv = process.env.BUILD_ENV;
 const cwd = process.cwd();
 const srcDir = path.join(cwd, 'public', 'src');
 const distDir = path.join(cwd, 'public', 'build', 'assets');
-const publicPath = 'https://smalldragonluo.com/assets/';
+const publicPath = './assets/';
 
 const config = {
   // default
@@ -28,8 +28,9 @@ const config = {
 
     fs.readdirSync(path.join(srcDir, 'js'))
       .map(function(fileName) {
+        let matched = fileName.match(/(.+)\.js/);
         return {
-          name: fileName.match(/(.+)\.js/) && fileName.match(/(.+)\.js/)[1],
+          name:  matched && matched[1],
           path: path.join(path.join(srcDir, 'js'), fileName)
         };
       })
@@ -43,9 +44,9 @@ const config = {
     return entry;
   },
   output: {
-    filename: '[name].min.js',
-    path: path.join(distDir, 'js'),
-    publicPath: publicPath + 'js',
+    filename: 'js/[name].min.js',
+    path: distDir,
+    publicPath: publicPath,
     libraryTarget: 'amd'
   },
   module: {
@@ -60,11 +61,19 @@ const config = {
       {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
       {
         test: /\.(eot|woff|woff2|svg|ttf)([?]?.*)$/,
-        loader: 'file-loader??publicPath=' + publicPath + 'fonts' + '&name=../fonts/[hash].[ext]'
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: 'fonts/'
+        }
       },
       {
-        test: /\.(png|jpg)$/,
-        loader: 'file-loader??publicPath=' + publicPath + 'images' + '&name=../images/[hash].[ext]'
+        test: /\.(png|jpg|bmp|gif|webp)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: 'images/'
+        }
       }
     ]
   },
@@ -73,26 +82,22 @@ const config = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(buildEnv)
     }),
-    new ExtractTextPlugin('../css/[name].min.css'),
+    new ExtractTextPlugin('css/[name].min.css', {
+      // allChunks: false default
+    }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'common',
       minChunks: 3
     }),
     new CopyWebpackPlugin([
-      {from: './js/compiled/', to: '../build/js', toType: 'dir'},
-      // {from: path.join(srcDir, 'html', '/**/*'), to: path.join(distDir, 'html')},
-      // {from: path.join(srcDir, 'images', '/**/*'), to: path.join(distDir, 'images')}
+      {from: './js/compiled/', to: path.join(distDir, 'js'), toType: 'dir'},
+      {from: './html/', to: path.join(distDir, 'html'), toType: 'dir'},
+      {from: './images/', to: path.join(distDir, 'images'), toType: 'dir'}
     ], {
       context: srcDir
     })
   ]
 };
-
-console.log([
-  {from: path.join(srcDir, 'js', 'compiled', '/**/*'), to: path.join(distDir, 'js')},
-  {from: path.join(srcDir, 'html', '/**/*'), to: path.join(distDir, 'html')},
-  {from: path.join(srcDir, 'images', '/**/*'), to: path.join(distDir, 'images')}
-]);
 
 if (buildEnv === 'development') {
   config.devtool = 'source-map';

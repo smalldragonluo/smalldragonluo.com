@@ -14,13 +14,17 @@
   background: rgba(188, 215, 230, 0.55);
 }
 
-body {
-
-}
-
 #layout {
   > .container {
     padding: 126/@r 0 0 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .mobile #layout {
+    > .container {
+      width: 100%;
+    }
   }
 }
 

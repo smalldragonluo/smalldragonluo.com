@@ -54,7 +54,7 @@
   }
 
   .post-list {
-    padding: 36/@r 0/@r;
+    padding: 36/@r;
     background: #f2f2f2;
   }
 
@@ -64,8 +64,8 @@
     font-size: 32/@r;
     padding: 20/@r 20/@r;
     margin-bottom: 20/@r;
-    border-top: 1px solid #e6e6e6;
-    border-bottom: 1px solid #e6e6e6;
+    border: 1px solid #e6e6e6;
+    border-radius: 6px;
   }
 
   .post-user {
@@ -96,14 +96,14 @@
   }
 }
 
-@media only screen and (min-width: 1024px) {
-  .index-content {
-    .post-list {
-      padding: 36/@r;
-    }
-    .post {
-      border: 1px solid #e6e6e6;
-      border-radius: 6px;
-    }
+// mobile
+.mobile .index-content {
+  .post-list {
+    padding: 0;
+  }
+  .post {
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+    border-radius: 6px;
   }
 }

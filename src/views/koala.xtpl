@@ -1,40 +1,36 @@
 <!doctype html>
 <html>
 <head>
-  <title>这傻乎乎是谁？</title>
+  <title>这是谁？</title>
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="smalldragonluo"/>
-  <meta name="keywords" content="fang"/>
-  <meta name="author" content="smalldragonluo"/>
   <link rel="shortcut icon" href="favicon.ico">
   <style>
-    #cont, #center {
-      width: 100% !important;
+    body {
+      margin: 0;
+    }
+    #dots {
       overflow: hidden;
+    }
+    #footer {
+      text-align: center;
+      padding: 60px 0 0 0;
     }
   </style>
   <script type="text/javascript">var version = '1.9.4';</script>
-  <!--[if gte IE 9]><!-->
   <script type="text/javascript" src="/assets/js/d3.min.js?1.9.4"></script>
   <script type="text/javascript" src="/assets/js/koala.js?1.9.4"></script>
-  <!--<![endif]-->
-  <link rel="stylesheet" type="text/css" href="/assets/css/koala.css?1.9.4"/>
 </head>
 <body>
 <div id="center">
   <div id="cont">
-    <noscript>
-      请打开javascript支持
-    </noscript>
     <div id="dots"></div>
   </div>
 </div>
 <div id="footer">
   请滑动屏幕
 </div>
-<!--[if gte IE 9]><!-->
 <script type="text/javascript">
   (function() {
     window.shownFile = 'none';
@@ -95,7 +91,7 @@
       }
 
       function basicLoad(location) {
-        var possible = ['zl2'];
+        var possible = ['we-keep-silent-most-of-the-time'];
         var file = '/assets/images/' + possible[Math.floor(Math.random() * possible.length)] + '.jpg';
         return {
           file: file,
@@ -148,7 +144,9 @@
       }
 
       var parse = parseUrl(location);
-      if (!parse) return;
+      if (!parse) {
+        return;
+      }
       var file = parse.file;
       window.shownFile = parse.shownFile;
       if (parse.background) {
@@ -162,6 +160,7 @@
       if (/^https?:/.test(file)) {
         file = "image-server.php?url=" + file;
       }
+
       function onEvent(what, value) {
         if (what === 'LayerClear' && value == 0) {
           d3.select('#next')
@@ -169,7 +168,9 @@
             .select('input')
             .on('keydown', function() {
               d3.select('div.err').remove();
-              if (d3.event.keyCode !== 13) return;
+              if (d3.event.keyCode !== 13) {
+                return;
+              }
               var input = d3.select(this).property('value');
               if (input.match(/^http:\/\/.+\..+/i)) {
                 d3.select('#next div.msg').text('Thinking...');
@@ -227,6 +228,5 @@
     }
   })();
 </script>
-<!--<![endif]-->
 </body>
 </html>
