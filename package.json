@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "install": "npm run build",
     "test": "mocha ./test/*.test.js",
-    "dev": "BUILD_ENV=develeopment webpack --config webpack.config.js --watch",
+    "dev": "BUILD_ENV=development webpack --config webpack.config.js --watch",
     "build": "BUILD_ENV=production webpack --config webpack.config.js"
   },
   "author": "",

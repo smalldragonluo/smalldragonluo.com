@@ -9,7 +9,20 @@
   <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
   <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
   <script src="/assets/js/jquery-1.10.2.min.js"></script>
-  <script>var fontSize=37.5;if(navigator.userAgent.match(/pad|mobile/i)){$('meta[name="viewport"]').attr('content','width=' + (window.innerWidth * devicePixelRatio) + ', initial-scale=' + (1 / devicePixelRatio) + ', maximum-scale=1, user-scalable=no');fontSize=document.documentElement.clientWidth/10;$('html').addClass('mobile');}$('html').css('font-size',fontSize+'px')</script>
+  <script>
+    try {
+      var fontSize = 37.5;
+      if (navigator.userAgent.match(/pad|mobile/i)) {
+        $('meta[name="viewport"]').attr('content', 'width=' + (window.innerWidth * devicePixelRatio) + ', initial-scale=' + (1 / devicePixelRatio) + ', maximum-scale=1, user-scalable=no');
+        fontSize = document.documentElement.clientWidth / 10;
+        $('html').addClass('mobile');
+      }
+      $('html').css('font-size', fontSize + 'px')
+    } catch (e) {
+      alert(e.stack);
+    }
+    // alert($('meta[name="viewport"]').attr('content'));
+  </script>
   {{{block ("assets")}}}
 </head>
 <body>

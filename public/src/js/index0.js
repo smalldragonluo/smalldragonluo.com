@@ -18,6 +18,7 @@ $(function() {
   // format date
   pageData.list.forEach(function(item) {
     item.createdAt = getRecentTime(new Date(item.createdAt));
+    item.content = item.content.replace('\n', '<br>');
   });
 
   var renderer = new Tpl(`
