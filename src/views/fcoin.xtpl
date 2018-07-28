@@ -1,0 +1,19 @@
+{{extend ("./layout/default-layout") }}
+
+{{#block ("assets")}}
+<link rel="stylesheet" href="/assets/css/fcoin.min.css">
+<script src="/assets/js/socket.io.js"></script>
+<script src="/assets/js/echarts.common.min.js"></script>
+{{/block}}
+
+{{#block ("content")}}
+<div class="fcoin-content">
+  <div id="main-chart" style="width: 100%; height: 400px;"></div>
+</div>
+{{/block}}
+
+{{#block ("script")}}
+<script>
+  require(['fcoin.min']);
+</script>
+{{/block}}
