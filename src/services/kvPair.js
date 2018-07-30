@@ -13,8 +13,6 @@ require('../db/index');
 
 module.exports = {
   getKVById: function(id) {
-    return kvPair.findOne({
-      id: id
-    });
+    return kvPair.findById(id);
   }
 };
