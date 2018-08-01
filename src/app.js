@@ -46,6 +46,7 @@ app.get('/', function(req, res) {
   req.query.pageSize = 100;
   listService.getListCache(req.query).then(function(data) {
     res.render('index', {
+      title: '笑话大王',
       list: data
     });
   });
