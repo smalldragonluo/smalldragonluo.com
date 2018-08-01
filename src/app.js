@@ -9,7 +9,8 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const http = require('http').Server(app);
-const io = require('socket.io')(http);
+// const io = require('socket.io')(http);
+const {logger} = require('./lib/utils');
 
 const router = express.Router();
 const configAPIRoutes = require('./routes');
@@ -62,6 +63,11 @@ app.get('/about', function(req, res) {
 });
 
 // 币
-require('./stock')(app, io);
+// require('./stock')(app, io);
+
+app.use(function (err, req, res, next) {
+  logger.error(err.stack);
+  res.status(500);
+});
 
 http.listen(6001);

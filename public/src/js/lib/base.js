@@ -6,3 +6,5 @@
 'use strict';
 
 // require('./rem-adjust');
+
+$(window).scroll(function(e) {});

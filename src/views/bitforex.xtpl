@@ -1,0 +1,24 @@
+{{extend ("./layout/default-layout") }}
+
+{{#block ("assets")}}
+<link rel="stylesheet" href="/assets/css/bitforex.min.css">
+<script src="/assets/js/socket.io.js"></script>
+<script src="/assets/js/echarts.common.min.js"></script>
+{{/block}}
+
+{{#block ("content")}}
+<div class="fcoin-content">
+  <button id="buy">下单</button>
+  <button id="symbol">币种</button>
+  <button id="fund1">单币种资产</button>
+  <button id="fund">所有币种资产</button>
+  <button id="history">历史</button>
+  <div id="main-chart" style="width: 100%; height: 400px;"></div>
+</div>
+{{/block}}
+
+{{#block ("script")}}
+<script>
+  require(['bitforex.min']);
+</script>
+{{/block}}

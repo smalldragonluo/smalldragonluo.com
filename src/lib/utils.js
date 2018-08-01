@@ -19,6 +19,12 @@ if (process.env.NODE_ENV === 'local') {
 }
 
 module.exports = {
+  /**
+   * MySQL 分页参数生成器
+   * @param pageNum
+   * @param pageSize
+   * @return {{offset: number, limit: number | *}}
+   */
   pagination: function(pageNum, pageSize) {
     if (typeof pageNum !== 'number' || typeof pageSize !== 'number') {
       pageNum = +pageNum;
@@ -41,5 +47,9 @@ module.exports = {
       limit: pageSize
     }
   },
-  logger: winston
+  logger: winston,
+  /**
+   * a function that do nothing
+   */
+  no_op() {}
 };
