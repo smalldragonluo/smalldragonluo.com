@@ -20,7 +20,8 @@ if (wxConfig) {
     nonceStr: wxConfig.nonceStr,    // 必填，生成签名的随机串
     signature: wxConfig.signature,  // 必填，签名
     jsApiList: [                    // 必填，需要使用的JS接口列表
-      'onMenuShareTimeline', 'onMenuShareAppMessage'
+      'uploadImage',
+      'chooseImage'
     ]
   });
   wx.error(function(res){

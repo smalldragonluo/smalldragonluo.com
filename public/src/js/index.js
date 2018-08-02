@@ -37,6 +37,15 @@ $(function() {
   $('.post-list').append(renderer(pageData));
 
   wx.ready(function(){
+    // wx.chooseImage({
+    //   count: 1, // 默认9
+    //   sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+    //   sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+    //   success: function (res) {
+    //     var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+    //   }
+    // });
+
     wx.onMenuShareTimeline({
       title: document.title,  // 分享标题
       link: location.href,    // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致

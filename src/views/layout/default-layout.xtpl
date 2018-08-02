@@ -21,7 +21,6 @@
     } catch (e) {
       alert(e.stack);
     }
-    // alert($('meta[name="viewport"]').attr('content'));
   </script>
   {{{block ("assets")}}}
 </head>
