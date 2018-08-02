@@ -110,7 +110,7 @@ module.exports = {
   async getJSAPIConfig(url) {
     const config = await wxConfig;
     const jsAPITicket = await this.getJSAPITicket();
-    const timestamp = Date.now();
+    const timestamp = Math.round(Date.now() / 1000);
     const sign = crypto.createHash('sha1').update(
       `jsapi_ticket=${jsAPITicket}&` +
       `noncestr=${timestamp}&` +
