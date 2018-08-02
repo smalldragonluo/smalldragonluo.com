@@ -22,7 +22,7 @@ module.exports = {
    */
   async getAccessToken() {
     // 第一次请求或者过期了
-    if (!clientCredential || Date.now() - credentialLastUpdateTime >= clientCredential.expires_in) {
+    if (!clientCredential || Date.now() - credentialLastUpdateTime >= clientCredential.expires_in * 1000) {
       logger.info('access_token expired or not exist');
       const config = await wxConfig;
 
@@ -65,7 +65,7 @@ module.exports = {
    * @return {Promise<*>}
    */
   async getJSAPITicket() {
-    if (!jsTicket || Date.now() - ticketLastUpdateTime >= jsTicket.expires_in) {
+    if (!jsTicket || Date.now() - ticketLastUpdateTime >= jsTicket.expires_in * 1000) {
       logger.info('jsapi expired or not exist');
       const accessToken = await this.getAccessToken();
 
