@@ -118,11 +118,28 @@ module.exports = {
       `url=${url}`
     ).digest('hex');
 
+    logger.info(
+      'string1',
+      `jsapi_ticket=${jsAPITicket}&` +
+      `noncestr=${timestamp}&` +
+      `timestamp=${timestamp}&` +
+      `url=${url}`
+    );
+    logger.info(
+      'sign',
+      crypto.createHash('sha1').update(
+        `jsapi_ticket=${jsAPITicket}&` +
+        `noncestr=${timestamp}&` +
+        `timestamp=${timestamp}&` +
+        `url=${url}`
+      ).digest('hex')
+    );
+
     return {
       appId: config.appId,  // 必填，公众号的唯一标识
       timestamp: timestamp, // 必填，生成签名的时间戳
       nonceStr: timestamp,  // 必填，生成签名的随机串
-      signature: sign      // 必填，签名
+      signature: sign       // 必填，签名
     };
   }
 };
