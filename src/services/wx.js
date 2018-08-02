@@ -111,9 +111,10 @@ module.exports = {
     const config = await wxConfig;
     const jsAPITicket = await this.getJSAPITicket();
     const timestamp = Math.round(Date.now() / 1000);
+    const noncestr = Math.round(Math.random() * 10000000);
     const sign = crypto.createHash('sha1').update(
       `jsapi_ticket=${jsAPITicket}&` +
-      `noncestr=${timestamp}&` +
+      `noncestr=${noncestr}&` +
       `timestamp=${timestamp}&` +
       `url=${url}`
     ).digest('hex');
@@ -121,7 +122,7 @@ module.exports = {
     logger.info(
       'string1',
       `jsapi_ticket=${jsAPITicket}&` +
-      `noncestr=${timestamp}&` +
+      `noncestr=${noncestr}&` +
       `timestamp=${timestamp}&` +
       `url=${url}`
     );
@@ -129,7 +130,7 @@ module.exports = {
       'sign',
       crypto.createHash('sha1').update(
         `jsapi_ticket=${jsAPITicket}&` +
-        `noncestr=${timestamp}&` +
+        `noncestr=${noncestr}&` +
         `timestamp=${timestamp}&` +
         `url=${url}`
       ).digest('hex')
@@ -138,7 +139,7 @@ module.exports = {
     return {
       appId: config.appId,  // 必填，公众号的唯一标识
       timestamp: timestamp, // 必填，生成签名的时间戳
-      nonceStr: timestamp,  // 必填，生成签名的随机串
+      nonceStr: noncestr,  // 必填，生成签名的随机串
       signature: sign       // 必填，签名
     };
   }
