@@ -12,7 +12,23 @@ const kvPair = require('../services/models/kvPair');
 require('../db/index');
 
 module.exports = {
-  getKVById: function(id) {
+  getById(id) {
     return kvPair.findById(id);
+  },
+  getByKey(key) {
+    return kvPair.find({
+      where: {
+        key: key
+      }
+    });
+  },
+  async getObjectByKey(key) {
+    let kv = await this.getByKey(key);
+
+    try {
+      return JSON.parse(kv.value);
+    } catch (e) {
+      throw new Error(`value 解析失败， key: ${kv.key}`);
+    }
   }
 };

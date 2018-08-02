@@ -25,7 +25,7 @@
   </script>
   {{{block ("assets")}}}
 </head>
-<body>
+<body data-wx="{{json(wx)}}">
 <div id="layout">
   {{include ("../partial/nav")}}
   <div class="container">
@@ -39,6 +39,7 @@
     baseUrl: location.origin + '/assets/js/'
   });
 </script>
+<script src="//res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script src="/assets/js/bootstrap.min.js"></script>
 <script src="/assets/js/common.min.js"></script>
 {{{block ("script")}}}

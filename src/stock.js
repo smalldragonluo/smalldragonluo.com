@@ -12,7 +12,7 @@ const kvService = require('./services/kvPair');
 module.exports = function(app, io) {
   (async function() {
     // // key & secret config
-    // let fcoinConfig = await kvService.getKVById(1);
+    // let fcoinConfig = await kvService.getById(1);
     //
     // try {
     //   fcoinConfig = JSON.parse(fcoinConfig.value);
@@ -61,7 +61,7 @@ module.exports = function(app, io) {
 
 
     // key & secret config
-    let bitforexConfig = await kvService.getKVById(2);
+    let bitforexConfig = await kvService.getById(2);
 
     try {
       bitforexConfig = JSON.parse(bitforexConfig.value);

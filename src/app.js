@@ -13,8 +13,8 @@ const http = require('http').Server(app);
 const {logger} = require('./lib/utils');
 
 const router = express.Router();
-const configAPIRoutes = require('./routes');
-const listService = require('./services/list');
+const configRoutes = require('./routes');
+const configAPIRoutes = require('./apiRoutes');
 const mountRenderer = require('./lib/renderer');
 
 // CORS（API and local assets, online assets we use nginx）
@@ -37,34 +37,11 @@ app.use(require('./middlewares/session'));
 // accessLog
 app.use(require('./middlewares/accessLog'));
 
+// page routes
+configRoutes(app, router);
 // API routes
 app.use('/api', router);
 configAPIRoutes(app, router);
-
-// page routes
-app.get('/', function(req, res) {
-  req.query.pageSize = 100;
-  listService.getListCache(req.query).then(function(data) {
-    res.render('index', {
-      title: '笑话大王',
-      list: data
-    });
-  });
-});
-
-app.get('/koala', function(req, res) {
-  res.render('koala', {});
-});
-
-app.get('/about', function(req, res) {
-  res.json({
-    message: '敬请期待',
-    data: new Date()
-  });
-});
-
-// 币
-// require('./stock')(app, io);
 
 app.use(function (err, req, res, next) {
   logger.error(err.stack);

@@ -29,12 +29,35 @@ $(function() {
         <span class="post-nickname"><%= item.user.userName %></span>
         <span class="post-date"><%= item.createdAt %></span>
       </div>
-      <span class="content-text"><%= item.content %></span>
+      <span class="page-desc content-text"><%= item.content %></span>
     </div>
     <% }); %>
   `);
 
   $('.post-list').append(renderer(pageData));
+
+  wx.ready(function(){
+    wx.onMenuShareTimeline({
+      title: document.title,  // 分享标题
+      link: location.href,    // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+      imgUrl: 'https://smalldragonluo.com/assets/images/favicon.jpg',             // 分享图标
+      success: function() {
+        // 用户点击了分享后执行的回调函数
+      }
+    });
+
+    wx.onMenuShareAppMessage({
+      title: document.title, // 分享标题
+      desc: $('.page-desc:eq(0)').text() || $('meta[name="description"]').attr('content') || document.title, // 分享描述
+      link: location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+      imgUrl: 'https://smalldragonluo.com/assets/images/favicon.jpg', // 分享图标
+      type: 'link', // 分享类型,music、video或link，不填默认为link
+      dataUrl: '', // 如果 type 是 music 或 video，则要提供数据链接，默认为空
+      success: function() {
+        // 用户点击了分享后执行的回调函数
+      }
+    });
+  });
 
   // 瀑布流
   var ref;
