@@ -33,13 +33,13 @@
   </div>
   {{include ("../partial/footer")}}
 </div>
+<script src="//res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script src="/assets/js/esl-2.1.6.min.js"></script>
 <script>
   require.config({
     baseUrl: location.origin + '/assets/js/'
   });
 </script>
-<script src="//res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script src="/assets/js/bootstrap.min.js"></script>
 <script src="/assets/js/common.min.js"></script>
 {{{block ("script")}}}

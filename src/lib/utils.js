@@ -15,7 +15,7 @@ winston.add(winston.transports.File, {filename: path.join(__dirname, '../../serv
 if (process.env.NODE_ENV === 'local') {
   winston.level = 'verbose';
 } else {
-  winston.level = 'warn';
+  winston.level = 'info';
 }
 
 module.exports = {
