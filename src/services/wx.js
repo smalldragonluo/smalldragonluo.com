@@ -48,7 +48,7 @@ module.exports = {
               reject(new Error(`get access_token failed, invalid body format: ${body}`));
             }
 
-            if (body.errmsg) {
+            if (body.errcode) {
               reject(new Error(`get access_token failed: ${body.errmsg}`));
             } else {
               resolve(body);
@@ -90,7 +90,7 @@ module.exports = {
               reject(new Error(`get jsapi ticket failed, invalid body format: ${body}`));
             }
 
-            if (body.errmsg) {
+            if (body.errcode) {
               reject(new Error(`get jsapi ticket failed: ${body.errmsg}`));
             } else {
               resolve(body);
