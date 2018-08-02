@@ -112,8 +112,8 @@ module.exports = {
     const jsAPITicket = await this.getJSAPITicket();
     const timestamp = Date.now();
     const sign = crypto.createHash('sha1').update(
-      `noncestr=${timestamp}&` +
       `jsapi_ticket=${jsAPITicket}&` +
+      `noncestr=${timestamp}&` +
       `timestamp=${timestamp}&` +
       `url=${url}`
     ).digest('hex');

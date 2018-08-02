@@ -43,6 +43,7 @@ $(function() {
       imgUrl: 'https://smalldragonluo.com/assets/images/favicon.jpg',             // 分享图标
       success: function() {
         // 用户点击了分享后执行的回调函数
+        alert('aa');
       }
     });
 
@@ -55,6 +56,7 @@ $(function() {
       dataUrl: '', // 如果 type 是 music 或 video，则要提供数据链接，默认为空
       success: function() {
         // 用户点击了分享后执行的回调函数
+        alert('aa');
       }
     });
   });
