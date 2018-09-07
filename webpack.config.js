@@ -30,7 +30,7 @@ const config = {
       .map(function(fileName) {
         let matched = fileName.match(/(.+)\.js/);
         return {
-          name:  matched && matched[1],
+          name: matched && matched[1],
           path: path.join(path.join(srcDir, 'js'), fileName)
         };
       })
@@ -96,6 +96,23 @@ const config = {
     ], {
       context: srcDir
     })
+  ],
+  externals: [
+    // {
+    //   // a: false, // a is not external
+    //   // b: true, // b is external `module.exports = b`
+    //   // "./c": "c", // "./c" is external `module.exports = c`
+    //   // "./d": "var d", // "./d" is external `module.exports = ./d`  <-- would be syntax error
+    //   // "./f": "commonjs2, ./a/b" // "./f" is external `module.exports = require("./a/b")`
+    //   // "./f": "commonjs, ./a/b" // ...same as commonjs2
+    //   // "./f": "this ./a/b", // "./f" is external `(function() { module.exports = this["./a/b"]; }())`
+    // },
+    // function(context, request, callback) {
+    //   if (/^externals-/.test(request)) {
+    //     return callback(null, "var " + request);
+    //   }
+    //   callback();
+    // }
   ]
 };
 

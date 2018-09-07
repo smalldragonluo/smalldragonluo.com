@@ -5,8 +5,6 @@
 
 'use strict';
 
-// require('./rem-adjust');
-
 $(window).scroll(function(e) {});
 
 // 微信 SDK 配置
