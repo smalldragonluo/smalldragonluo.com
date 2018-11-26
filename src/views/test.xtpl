@@ -1,0 +1,18 @@
+{{extend ("./layout/react-layout") }}
+
+{{#block ("assets")}}
+<!--<script src="/assets/js/react-16.5.2.min.js"></script>-->
+<!--<script src="/assets/js/react-dom-16.5.2.min.js"/></script>-->
+{{/block}}
+
+{{#block ("content")}}
+<div class="index-content J_PageData" data-page-data="{{json({list: list})}}">
+  <div class="post-list"></div>
+</div>
+{{/block}}
+
+{{#block ("script")}}
+<script>
+  require(['index.min']);
+</script>
+{{/block}}

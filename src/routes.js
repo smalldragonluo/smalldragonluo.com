@@ -29,6 +29,10 @@ module.exports = function(app, router) {
     });
   });
 
+  app.get('/test', function(req, res) {
+    res.render('test', {});
+  });
+
   app.get('/koala', function(req, res) {
     res.render('koala', {});
   });
