@@ -13,6 +13,12 @@
 
 {{#block ("script")}}
 <script>
-  require(['index.min']);
+  navigator.geolocation.getCurrentPosition(function(position) {
+    // Get the coordinates of the current possition.
+    var lat = position.coords.latitude;
+    var lng = position.coords.longitude;
+
+    document.write(lat + ' ' + lng);
+  });
 </script>
 {{/block}}
