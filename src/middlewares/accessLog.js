@@ -8,6 +8,6 @@
 const utils = require('../lib/utils');
 
 module.exports = function(req, resp, next) {
-  utils.logger.verbose('GET', req.originalUrl);
+  utils.logger.verbose(req.method, req.originalUrl);
   next();
 };

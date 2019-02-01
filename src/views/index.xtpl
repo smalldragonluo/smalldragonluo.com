@@ -5,13 +5,11 @@
 {{/block}}
 
 {{#block ("content")}}
-<div class="index-content J_PageData" data-page-data="{{json({list: list})}}">
+<div class="index-content">
   <div class="post-list"></div>
 </div>
 {{/block}}
 
 {{#block ("script")}}
-<script>
-  require(['index.min']);
-</script>
+<script src="/assets/js/index.min.js"></script>
 {{/block}}

@@ -6,14 +6,14 @@
   "scripts": {
     "install": "npm run build",
     "test": "mocha ./test/*.test.js",
-    "dev": "BUILD_ENV=development webpack --config webpack.config.js --watch",
-    "build": "BUILD_ENV=production webpack --config webpack.config.js"
+    "build": "NODE_ENV=production webpack --config webpack.config.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "co": "^4.6.0",
     "express": "^4.13.4",
+    "express-session": "^1.15.6",
     "mysql2": "^1.4.2",
     "request": "^2.83.0",
     "sequelize": "^4.11.5",
@@ -24,24 +24,37 @@
     "xtpl": "^3.2.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.2.3",
+    "@babel/plugin-proposal-unicode-property-regex": "^7.2.0",
+    "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
+    "antd-mobile": "^2.2.8",
+    "axios": "^0.18.0",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-import": "^1.11.0",
     "chai": "^4.1.2",
-    "clean-webpack-plugin": "^0.1.18",
-    "copy-webpack-plugin": "^4.4.1",
-    "css-loader": "^0.28.9",
-    "extract-text-webpack-plugin": "^3.0.2",
+    "clean-webpack-plugin": "^1.0.0",
+    "copy-webpack-plugin": "^4.6.0",
+    "css-loader": "^2.1.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^1.1.6",
-    "less": "^3.0.0",
-    "less-loader": "^4.0.5",
+    "html-webpack-plugin": "^3.2.0",
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0",
     "mocha": "^5.2.0",
-    "react": "^16.5.1",
-    "react-dom": "^16.5.1",
-    "style-loader": "^0.20.1",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-hot-loader": "^4.6.3",
+    "style-loader": "^0.23.1",
     "uglifyjs-webpack-plugin": "^1.1.8",
+    "url-loader": "^1.1.2",
     "vue": "^2.5.13",
-    "webpack": "^3.10.0"
-  }
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-middleware": "^3.5.1",
+    "webpack-hot-middleware": "^2.24.3",
+    "webpack-merge": "^4.2.1"
+  },
+  "__npminstall_done": false
 }

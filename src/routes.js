@@ -9,23 +9,23 @@ const listService = require('./services/list');
 const wxService = require('./services/wx');
 const {logger} = require('./lib/utils');
 
-module.exports = function(app, router) {
+module.exports = function(app) {
   // page routes
   app.get('/', async function(req, res) {
-    let wx;
-
-    try {
-      wx = await wxService.getJSAPIConfig(req.protocol + '://' + req.get('host') + req.originalUrl);
-    } catch (e) {
-      logger.error(e.stack);
-    }
+    // let wx;
+    //
+    // try {
+    //   wx = await wxService.getJSAPIConfig(req.protocol + '://' + req.get('host') + req.originalUrl);
+    // } catch (e) {
+    //   logger.error(e.stack);
+    // }
 
     req.query.pageSize = 100;
 
-    res.render('index', {
+    res.vary('User-Agent').render('index', {
       title: '笑话大王',
-      list: await listService.getListCache(req.query),
-      wx: wx
+      // list: await listService.getListCache(req.query),
+      // wx: wx
     });
   });
 

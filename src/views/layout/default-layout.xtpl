@@ -10,37 +10,30 @@
   <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
   <script src="/assets/js/jquery-1.10.2.min.js"></script>
   <script>
-    try {
-      var fontSize = 37.5;
-      if (navigator.userAgent.match(/pad|mobile/i)) {
-        $('meta[name="viewport"]').attr('content', 'width=' + (window.innerWidth * devicePixelRatio) + ', initial-scale=' + (1 / devicePixelRatio) + ', maximum-scale=1, user-scalable=no');
+    var fontSize = 37.5;
+    if (navigator.userAgent.match(/pad|mobile/i)) {
+      var meta = Array.prototype.find.call(document.head.getElementsByTagName('meta'), function(meta) {
+        return meta.name === 'viewport'
+      });
+      if (meta) {
         fontSize = document.documentElement.clientWidth / 10;
-        $('html').addClass('mobile');
+        meta.setAttribute('content', 'width=' + (window.innerWidth * devicePixelRatio) + ', initial-scale=' + (1 / devicePixelRatio) + ', maximum-scale=1, user-scalable=no');
       }
-      $('html').css('font-size', fontSize + 'px')
-    } catch (e) {
-      alert(e.stack);
+      document.documentElement.className += ' mobile';
     }
+    document.documentElement.style.fontSize = fontSize + 'px';
   </script>
-  {{{block ("assets")}}}
+  {{{block ('assets')}}}
 </head>
-<body data-wx="{{json(wx)}}">
+<body>
 <div id="layout">
-  {{include ("../partial/nav")}}
+  {{include ('../partial/nav')}}
   <div class="container">
-    {{{block ("content")}}}
+    {{{block ('content')}}}
   </div>
-  {{include ("../partial/footer")}}
+  {{include ('../partial/footer')}}
 </div>
-<script src="//res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
-<script src="/assets/js/esl-2.1.6.min.js"></script>
-<script>
-  require.config({
-    baseUrl: location.origin + '/assets/js/'
-  });
-</script>
 <script src="/assets/js/bootstrap.min.js"></script>
-<script src="/assets/js/common.min.js"></script>
-{{{block ("script")}}}
+{{{block ('script')}}}
 </body>
 </html>

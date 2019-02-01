@@ -8,6 +8,7 @@
 const xtemplate = require('xtemplate');
 
 module.exports = function(app) {
+  // 自定义模板命令
   xtemplate.addCommand('json', function(scope, option) {
     return JSON.stringify(option.params[0]);
   });

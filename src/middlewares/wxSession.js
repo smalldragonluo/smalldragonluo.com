@@ -10,7 +10,7 @@
 //   "expires_in": 7200,
 //   "openid": "xxx"
 // }
-const session = {};
+const wxSession = {};
 const request = require('request');
 const utils = require('../lib/utils');
 const userService = require('../services/user');
@@ -20,9 +20,9 @@ const userService = require('../services/user');
  * @param openid
  */
 function removeSessionRedundancies(openid) {
-  Object.keys(session).forEach(function(key) {
-    if (session[key].openid === openid) {
-      delete session[key];
+  Object.keys(wxSession).forEach(function(key) {
+    if (wxSession[key].openid === openid) {
+      delete wxSession[key];
     }
   });
 }
@@ -36,8 +36,8 @@ module.exports = function(req, resp, next) {
   }
 
   // _code 为 session id
-  if (session[req.query._code]) {
-    req.session = session[req.query._code];
+  if (wxSession[req.query._code]) {
+    req.session = wxSession[req.query._code];
     if (req.query._nickName !== req.session.userName || req.query._avatarUrl !== req.session.avatar) {
       // no op whether it succeeds or flops
       userService.updateUser({
@@ -95,7 +95,7 @@ module.exports = function(req, resp, next) {
         }).then(function(user) {
           if (user) {
             removeSessionRedundancies(loginInfo.openid);
-            req.session = session[req.query._code] = Object.assign(loginInfo, user.toJSON());
+            req.session = wxSession[req.query._code] = Object.assign(loginInfo, user.toJSON());
             next();
           } else {
             const userInfo = {
@@ -106,7 +106,7 @@ module.exports = function(req, resp, next) {
 
             userService.addUser(userInfo).then(() => {
               removeSessionRedundancies(loginInfo.openid);
-              req.session = session[req.query._code] = Object.assign(loginInfo, userInfo);
+              req.session = wxSession[req.query._code] = Object.assign(loginInfo, userInfo);
               next();
             }, (err) => {
               utils.logger.error('ERR!', '添加用户失败：', err && err.stack);

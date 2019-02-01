@@ -13,37 +13,42 @@ const http = require('http').Server(app);
 const {logger} = require('./lib/utils');
 
 const router = express.Router();
+const configMiddleware = require('./middlewares/index');
 const configRoutes = require('./routes');
 const configAPIRoutes = require('./apiRoutes');
 const mountRenderer = require('./lib/renderer');
 
-// CORS（API and local assets, online assets we use nginx）
-app.use(function(req, res, next) {
-  if (req.headers.origin && req.headers.origin.match(/^https:\/\/blog.smalldragonluo.com/)) {
-    res.header('Access-Control-Allow-Origin', 'https://blog.smalldragonluo.com/');
-    res.header('Access-Control-Expose-Headers', 'Content-Length');
-    res.header('Access-Control-Allow-Headers', 'range');
-  }
-  next();
-});
+// assets dev
+if (app.get('env') === 'development') {
+  const webpack = require('webpack');
+  const webpackDevMiddleware = require('webpack-dev-middleware');
+  const config = require('../webpack.config.js');
+  const compiler = webpack(config);
+
+  // HMR
+  app.use(webpackDevMiddleware(compiler, {
+    publicPath: (config.output || config[0].output).publicPath
+  }));
+  app.use(require('webpack-hot-middleware')(compiler));
+}
+
 // static（local only，online we use nginx）
 app.use(express.static(path.join(__dirname, '../public/build')));
 
 // set view engine
 mountRenderer(app);
 
-// session
-app.use(require('./middlewares/session'));
-// accessLog
-app.use(require('./middlewares/accessLog'));
+// set middleware
+configMiddleware(app);
 
 // page routes
-configRoutes(app, router);
+configRoutes(app);
+
 // API routes
 app.use('/api', router);
 configAPIRoutes(app, router);
 
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
   logger.error(err.stack);
   res.status(500);
 });

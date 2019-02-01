@@ -1,0 +1,11 @@
+{{extend ("./layout/react-layout") }}
+
+{{#block ("assets")}}
+{{/block}}
+
+{{#block ("content")}}
+{{/block}}
+
+{{#block ("script")}}
+<script src="/assets/js/index-mobile.min.js"></script>
+{{/block}}

@@ -25,14 +25,14 @@ module.exports.getList = function getList(queries) {
       ['createdAt', 'DESC']
     ],
     include: [user]
-  }, utils.pagination(queries.pageNum, queries.pageSize)));
+  }, utils.pagination(queries.startPage, queries.pageSize)));
 };
 /**
  * 增加了缓存
  * @type {Throttle}
  */
 module.exports.getListCache = new Throttle(module.exports.getList, function(queries) {
-  return `${queries.pageNum}-${queries.pageSize}`;
+  return `${queries.startPage}-${queries.pageSize}`;
 }, 10000);
 /**
  * 增加内容
