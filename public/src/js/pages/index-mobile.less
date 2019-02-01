@@ -1,4 +1,53 @@
-.item {
-  height: 100px;
-  background: #cccccc;
+.tab {
+  height: 100%;
+
+  :global {
+    .am-list-body {
+      background: #f2f2f2;
+    }
+  }
+}
+
+.post {
+  border-top: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+  background: #ffffff;
+  color: #333333;
+  font-size: 14px;
+  padding: 10px;
+  margin-bottom: 10px;
+
+  :global {
+    .user {
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+    }
+
+    .nickname {
+      color: #f56200;
+      position: absolute;
+      left: 44px;
+      top: 4px;
+    }
+
+    .date {
+      color: #999;
+      position: absolute;
+      left: 44px;
+      top: 22px;
+      font-size: 12px;
+    }
+
+    .content {
+      line-height: 1.4;
+      margin: 0;
+      white-space: pre-line;
+    }
+  }
 }

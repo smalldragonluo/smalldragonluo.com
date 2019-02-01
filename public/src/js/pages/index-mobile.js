@@ -6,13 +6,14 @@
 'use strict';
 
 import React, { Component } from 'react';
+import {hot} from 'react-hot-loader/root'
 import { ListView, PullToRefresh } from 'antd-mobile';
 import axios from 'axios';
 import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
 
 import styles from './index-mobile.less';
 
-export default class Index extends Component {
+class Index extends Component {
   state = {
     dataSource: new ListView.DataSource({
       rowHasChanged: (row1, row2) => row1 !== row2,
@@ -82,35 +83,36 @@ export default class Index extends Component {
   };
 
   renderItem = (item, sectionID, rowID) => {
-    console.log(item);
     return (
-      <div className="post">
-        <div className="post-user">
-          <img className="post-avatar" src={item.user.avatar}/>
-          <span className="post-nickname">{item.user.userName}</span>
-          <span className="post-date">{item.createdAt}</span>
+      <div className={styles.post}>
+        <div className="user">
+          <img className="avatar" src={item.user.avatar}/>
+          <span className="nickname">{item.user.userName}</span>
+          <span className="date">{item.createdAt}</span>
         </div>
-        <span className="page-desc content-text">{item.content}</span>
+        <pre className="content">{item.content}</pre>
       </div>
     );
   };
 
   onRefresh = () => {
-
+    this.startPage = 1;
+    this.mappedData = {};
+    this.loadMoreData();
   };
 
   render() {
     return (
       <ListView
+        className={styles.tab}
         dataSource={this.state.dataSource}
-        // renderHeader={() => <span>Pull to refresh</span>}
+        // renderHeader={() => <span>笑话大王</span>}
         renderFooter={() =>
-          <div style={{ padding: 30, textAlign: 'center' }}>
+          <div style={{ padding: 4, textAlign: 'center' }}>
             {this.state.isLoading ? '加载中' : '到底啦'}
           </div>
         }
         renderRow={this.renderItem}
-        style={{ height: '100%' }}
         pullToRefresh={
           <PullToRefresh
             refreshing={this.state.isLoading}
@@ -118,10 +120,12 @@ export default class Index extends Component {
           />
         }
         onEndReached={this.loadMoreData}
-        onEndReachedThreshold={10}
+        onEndReachedThreshold={500}
         scrollRenderAheadDistance={500}
         pageSize={20}
       />
     );
   }
 }
+
+export default hot(Index);

@@ -81,7 +81,6 @@ if (buildEnv === 'development') {
 }
 
 const mobileConfig = merge(defaultConfig, {
-  ...defaultConfig, // 目录下直接子 JS 文件作为入口
   entry: function() {
     const entry = {
       'index-mobile': path.join(srcDir, 'js/index-mobile.js')
@@ -142,7 +141,6 @@ const mobileConfig = merge(defaultConfig, {
 });
 
 const pcConfig = merge(defaultConfig, {
-  ...defaultConfig, // 目录下直接子 JS 文件作为入口
   entry: {
     bootstrap: path.join(srcDir, 'js/bootstrap.js'),
     index: path.join(srcDir, 'js/index.js'),
@@ -167,5 +165,5 @@ const pcConfig = merge(defaultConfig, {
 
 module.exports = [
   mobileConfig,
-  // pcConfig,
+  pcConfig,
 ];
