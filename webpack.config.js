@@ -165,5 +165,5 @@ const pcConfig = merge(defaultConfig, {
 
 module.exports = [
   mobileConfig,
-  pcConfig,
+  pcConfig
 ];

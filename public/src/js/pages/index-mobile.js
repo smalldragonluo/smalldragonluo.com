@@ -9,7 +9,8 @@ import React, { Component } from 'react';
 import {hot} from 'react-hot-loader/root'
 import { ListView, PullToRefresh } from 'antd-mobile';
 import axios from 'axios';
-import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
+import { Toast } from 'antd-mobile';
+const {getRecentTime} = require('../lib/utils');
 
 import styles from './index-mobile.less';
 
@@ -72,6 +73,7 @@ class Index extends Component {
     for (let i = 0; i < rowCount; i++) {
       const ii = ((pageIndex - 1) * rowCount) + i;
       mappedData[`${ii}`] = list[i];
+      list[i].createdAt = getRecentTime(new Date(list[i].createdAt));
     }
 
     this.mappedData = { ...this.mappedData, ...mappedData };
