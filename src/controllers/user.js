@@ -14,15 +14,26 @@ module.exports = {
     if (!userName || !email) {
       resp.status(500).json({success: false});
     } else {
-      userService.addUser({ userName, email }).then(() => {
-        req.session.userInfo = { userName, email };
-        req.session.save();
-        resp.json({
-          success: true,
-          data: { userName, email }
-        });
-      }, (err) => {
-        console.log(err);
+      userService.getUser({where: { email }}).then((userInfo) => {
+        if (userInfo) {
+          req.session.userInfo = { userName, email };
+          req.session.save();
+          resp.json({
+            success: true,
+            data: req.session.userInfo
+          });
+        } else {
+          userService.addUser({ userName, email }).then(() => {
+            req.session.userInfo = { userName, email };
+            req.session.save();
+            resp.json({
+              success: true,
+              data: { userName, email }
+            });
+          }, (err) => {
+            console.log(err);
+          });
+        }
       });
     }
   },
