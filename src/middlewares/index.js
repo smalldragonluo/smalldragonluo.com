@@ -6,10 +6,15 @@
 'use strict';
 
 const session = require('express-session');
+const bodyParser = require('body-parser');
 
 module.exports = function(app) {
+  // post params
+  app.use(bodyParser.json({}));
+  app.use(bodyParser.raw({}));
+
   // 分端渲染
-  app.use(require('./multiEnd'));
+  app.use(require('./renderContext'));
 
   // CORS（API and local assets, online assets we use nginx）
   app.use(function(req, res, next) {

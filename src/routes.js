@@ -22,7 +22,7 @@ module.exports = function(app) {
 
     req.query.pageSize = 100;
 
-    res.vary('User-Agent').render('index', {
+    res.render('index', {
       title: '笑话大王',
       // list: await listService.getListCache(req.query),
       // wx: wx

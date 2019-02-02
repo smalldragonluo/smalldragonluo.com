@@ -6,7 +6,10 @@
 'use strict';
 
 const API = {
-  GET_LIST: '/api/list'
+  GET_LIST: '/api/list',
+  USER_INFO: '/api/user',
+  USER_LOGIN: '/api/login',
+  USER_LOGOUT: '/api/logout',
 };
 
 export { API };

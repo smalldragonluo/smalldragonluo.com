@@ -6,10 +6,13 @@
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { TabBar } from 'antd-mobile';
+import axios from 'axios';
+import { TabBar, Toast } from 'antd-mobile';
 import Icon from './components/Icon';
 import IndexTab from './pages/index-mobile';
 import MyTab from './pages/my-mobile';
+import { API } from './consts';
+import MicroEvent from './lib/event';
 
 import styles from './index-mobile.less';
 
@@ -21,6 +24,14 @@ const tabComponents = {
 };
 
 export default class Index extends Component {
+  constructor(props) {
+    super(props);
+    this.app = {
+      event: new MicroEvent(),
+      userInfo: {},
+    };
+  }
+
   state = {
     currentTab: 'index',
     tabs: [
@@ -51,6 +62,29 @@ export default class Index extends Component {
     ]
   };
 
+  componentWillMount() {
+    axios
+      .get(API.USER_INFO)
+      .then(({ data }) => {
+        this.app.userInfo = data.data || {};
+        this.forceUpdate();
+      })
+      .catch((error) => {
+        Toast.offline('出了点小问题', 1);
+        console.error(error.stack);
+      });
+
+    this.app.event.on('login', (userInfo) => {
+      this.app.userInfo = userInfo;
+      this.forceUpdate();
+    });
+
+    this.app.event.on('logout', (userInfo) => {
+      this.app.userInfo = {};
+      this.forceUpdate();
+    });
+  }
+
   /**
    * 渲染 tab
    * @param tabName
@@ -59,7 +93,7 @@ export default class Index extends Component {
   renderTab = (tabName) => {
     if (this.state.currentTab === tabName) {
       const TabComponent = tabComponents[tabName];
-      return <TabComponent/>;
+      return <TabComponent {...this.app}/>;
     } else {
       return null;
     }
@@ -70,7 +104,7 @@ export default class Index extends Component {
       <div className={styles.layout}>
         <TabBar
           unselectedTintColor="#000000"
-          tintColor="#57be6a"
+          tintColor="#fe3f4b"
           barTintColor="#f7f7f7"
         >
           {this.state.tabs.map(({ name, title, icon, selectedIcon }) => {

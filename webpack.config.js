@@ -17,7 +17,7 @@ const buildEnv = process.env.NODE_ENV;
 const cwd = __dirname;
 const srcDir = path.join(cwd, 'public', 'src');
 const distDir = path.join(cwd, 'public', 'build', 'assets');
-const publicPath = 'https://cdn.smalldragonluo.com/assets/';
+const publicPath = buildEnv === 'development' ? '/assets/' : 'https://cdn.smalldragonluo.com/assets/';
 
 const defaultConfig = {
   mode: buildEnv,
@@ -174,7 +174,11 @@ const pcConfig = merge(defaultConfig, {
   ]
 });
 
-module.exports = [
-  mobileConfig,
-  // pcConfig
-];
+module.exports = buildEnv === 'development' ?
+  [
+    mobileConfig,
+    // pcConfig
+  ] : [
+    mobileConfig,
+    pcConfig
+  ];

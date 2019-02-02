@@ -13,7 +13,7 @@ const user = sequelize.define('user', {
     type: Sequelize.INTEGER,
     field: 'id',
     primaryKey: true,
-    allowNull: false
+    allowNull: true
   },
   userName: {
     type: Sequelize.STRING(20),
@@ -25,10 +25,15 @@ const user = sequelize.define('user', {
     field: 'avatar',
     allowNull: true
   },
+  email: {
+    type: Sequelize.STRING(256),
+    field: 'email',
+    allowNull: true
+  },
   openId: {
     type: Sequelize.STRING(128),
     field: 'openId',
-    allowNull: false
+    allowNull: true
   }
 }, {
   // add the timestamp attributes (updatedAt, createdAt)

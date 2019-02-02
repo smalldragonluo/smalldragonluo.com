@@ -7,5 +7,5 @@
 {{/block}}
 
 {{#block ("script")}}
-<script src="https://cdn.smalldragonluo.com/assets/js/index-mobile.min.js"></script>
+<script src="{{assets('/assets/js/index-mobile.min.js')}}"></script>
 {{/block}}
