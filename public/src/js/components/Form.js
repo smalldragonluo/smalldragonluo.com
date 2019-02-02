@@ -44,11 +44,11 @@ export class Input extends Component {
 
   render() {
     const { onChange } = this;
-    const { placeholder } = this.props;
+    const { placeholder, disabled } = this.props;
     const { value } = this.state;
 
     return (
-      <input className="c-form-input" {...{ value, placeholder, onChange }}/>
+      <input className="c-form-input" {...{ value, placeholder, onChange, disabled }}/>
     );
   }
 }

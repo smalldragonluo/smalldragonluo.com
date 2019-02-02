@@ -97,16 +97,16 @@ class My extends Component {
                   >
                     <Input
                       name="userName"
-                      placeholder="请输入您的昵称"
+                      disabled={true}
                       initialValue={this.props.userInfo.userName}
                     />
                   </Field>
                   <Field
                     title="电子邮箱"
-                    tip="邮箱仅用于区分用户，不会向您发送验证码"
                   >
                     <Input
                       name="email"
+                      disabled={true}
                       initialValue={this.props.userInfo.email}
                     />
                   </Field>
