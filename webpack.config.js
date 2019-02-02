@@ -17,7 +17,7 @@ const buildEnv = process.env.NODE_ENV;
 const cwd = __dirname;
 const srcDir = path.join(cwd, 'public', 'src');
 const distDir = path.join(cwd, 'public', 'build', 'assets');
-const publicPath = '/assets/';
+const publicPath = 'https://cdn.smalldragonluo.com/assets/';
 
 const defaultConfig = {
   mode: buildEnv,
@@ -75,9 +75,20 @@ if (buildEnv === 'development') {
     contentBase: distDir,
     hot: true
   };
-  defaultConfig.plugins.push(new webpack.HotModuleReplacementPlugin())
+  defaultConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
+  // https://github.com/webpack-contrib/webpack-bundle-analyzer
+  defaultConfig.plugins.push(new (require('webpack-bundle-analyzer').BundleAnalyzerPlugin)({
+    analyzerHost: '127.0.0.1',
+    analyzerPort: 6001,
+    openAnalyzer: false
+  }));
 } else if (buildEnv === 'production') {
-  defaultConfig.plugins.push(new UglifyJSPlugin({ sourceMap: true }));
+  defaultConfig.plugins.push(new UglifyJSPlugin({ sourceMap: false }));
+  defaultConfig.plugins.push(new (require('webpack-bundle-analyzer').BundleAnalyzerPlugin)({
+    analyzerMode: 'static',
+    openAnalyzer: false,
+    reportFilename: 'deps-analyze.html',
+  }));
 }
 
 const mobileConfig = merge(defaultConfig, {

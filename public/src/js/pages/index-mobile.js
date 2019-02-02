@@ -11,6 +11,7 @@ import { ListView, PullToRefresh } from 'antd-mobile';
 import axios from 'axios';
 import { Toast } from 'antd-mobile';
 const {getRecentTime} = require('../lib/utils');
+import {API} from '../consts';
 
 import styles from './index-mobile.less';
 
@@ -43,7 +44,7 @@ class Index extends Component {
     const startPage = this.startPage++;
 
     axios
-      .get('/api/list', {
+      .get(API.GET_LIST, {
         params: {
           startPage,
           pageSize: 20,

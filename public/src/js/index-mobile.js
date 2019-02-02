@@ -57,8 +57,12 @@ export default class Index extends Component {
    * @return {*}
    */
   renderTab = (tabName) => {
-    const TabComponent = tabComponents[tabName];
-    return <TabComponent/>;
+    if (this.state.currentTab === tabName) {
+      const TabComponent = tabComponents[tabName];
+      return <TabComponent/>;
+    } else {
+      return null;
+    }
   };
 
   render() {
