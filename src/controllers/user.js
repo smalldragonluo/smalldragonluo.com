@@ -14,10 +14,6 @@ module.exports = {
     if (!userName || !email) {
       resp.status(500).json({success: false});
     } else {
-      resp.json({
-        success: true,
-        data: { userName, email }
-      });
       userService.addUser({ userName, email }).then(() => {
         req.session.userInfo = { userName, email };
         req.session.save();
