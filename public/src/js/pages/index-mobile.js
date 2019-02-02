@@ -51,12 +51,11 @@ class Index extends Component {
       })
       .then(({ data }) => {
         this.setMoreData(startPage, data.data);
+        this.setState({ isLoading: false });
       })
       .catch((error) => {
         Toast.offline('出了点小问题', 1);
         console.error(error.stack);
-      })
-      .finally(() => {
         this.setState({ isLoading: false });
       });
   };
