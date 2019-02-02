@@ -7,8 +7,8 @@
   <meta name="renderer" content="webkit">
   <title>{{title || 'smalldragonluo'}}</title>
   <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
-  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-  <script src="/assets/js/jquery-1.10.2.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.smalldragonluo.com/assets/css/bootstrap.min.css">
+  <script src="https://cdn.smalldragonluo.com/assets/js/jquery-1.10.2.min.js"></script>
   <script>
     var fontSize = 37.5;
     if (navigator.userAgent.match(/pad|mobile/i)) {
@@ -33,7 +33,7 @@
   </div>
   {{include ('../partial/footer')}}
 </div>
-<script src="/assets/js/bootstrap.min.js"></script>
+<script src="https://cdn.smalldragonluo.com/assets/js/bootstrap.min.js"></script>
 {{{block ('script')}}}
 </body>
 </html>

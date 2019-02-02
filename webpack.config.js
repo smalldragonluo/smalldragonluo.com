@@ -84,11 +84,11 @@ if (buildEnv === 'development') {
   }));
 } else if (buildEnv === 'production') {
   defaultConfig.plugins.push(new UglifyJSPlugin({ sourceMap: false }));
-  defaultConfig.plugins.push(new (require('webpack-bundle-analyzer').BundleAnalyzerPlugin)({
-    analyzerMode: 'static',
-    openAnalyzer: false,
-    reportFilename: 'deps-analyze.html',
-  }));
+  // defaultConfig.plugins.push(new (require('webpack-bundle-analyzer').BundleAnalyzerPlugin)({
+  //   analyzerMode: 'static',
+  //   openAnalyzer: false,
+  //   reportFilename: 'deps-analyze.html',
+  // }));
 }
 
 const mobileConfig = merge(defaultConfig, {

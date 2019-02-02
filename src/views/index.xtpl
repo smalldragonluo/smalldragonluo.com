@@ -1,7 +1,7 @@
 {{extend ("./layout/default-layout") }}
 
 {{#block ("assets")}}
-<link rel="stylesheet" href="/assets/css/index.min.css">
+<link rel="stylesheet" href="https://cdn.smalldragonluo.com/assets/css/index.min.css">
 {{/block}}
 
 {{#block ("content")}}
@@ -11,5 +11,5 @@
 {{/block}}
 
 {{#block ("script")}}
-<script src="/assets/js/index.min.js"></script>
+<script src="https://cdn.smalldragonluo.com/assets/js/index.min.js"></script>
 {{/block}}

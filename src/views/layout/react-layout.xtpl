@@ -7,7 +7,7 @@
   <meta name="renderer" content="webkit">
   <title>{{title || 'smalldragonluo'}}</title>
   <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
-  <link rel="apple-touch-icon" href="/assets/images/avatar.jpg"/>
+  <link rel="apple-touch-icon" href="https://cdn.smalldragonluo.com/assets/images/avatar.jpg"/>
   <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
   <script>
     if ('addEventListener' in document) {
@@ -19,8 +19,8 @@
       document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"' + '>' + '<' + '/' + 'script>');
     }
   </script>
-  <script src="/assets/js/react-v16.7.0.min.js"></script>
-  <script src="/assets/js/react-dom-v16.7.0.min.js"></script>
+  <script src="https://cdn.smalldragonluo.com/assets/js/react-v16.7.0.min.js"></script>
+  <script src="https://cdn.smalldragonluo.com/assets/js/react-dom-v16.7.0.min.js"></script>
   {{{block ('assets')}}}
 </head>
 <body>
