@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "allowJs": false,                     // 允许编译 JS 文件
+    "sourceMap": true,
+    "noImplicitAny": false,               // 在表达式和声明上有隐含的 any 类型时报错
+    "noImplicitReturns": true,            // 不是函数的所有返回路径都有返回值时报错
+    "strictNullChecks": true,             // 在严格的 null 检查模式下， null 和 undefined 值不包含在任何类型里，只允许用它们自己和 any 来赋值（有个例外， undefined 可以赋值到 void）
+    "strictPropertyInitialization": true, // 确保类的非 undefined 属性已经在构造函数里初始化。若要令此选项生效，需要同时启用 --strictNullChecks
+    "noUnusedLocals": true,               // 若有未使用的局部变量则抛错
+    "noEmitOnError": true,
+    "declaration": false,                 // 生成相应的 .d.ts 文件
+    "diagnostics": false,                 // 显示诊断信息
+    "extendedDiagnostics": false,         // 显示详细的诊段信息
+    "experimentalDecorators": true,       // 启用实验性的 ES 装饰器
+    "pretty": true,                       // 给错误和消息设置样式，使用颜色和上下文
+    "module": "es6",
+    "target": "es5",
+    "jsx": "react"
+  },
+  "include": [
+    "./public/src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ],
+  "lib": [
+    "ESNext",
+    "DOM"
+  ]
+}
