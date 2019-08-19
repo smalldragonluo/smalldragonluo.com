@@ -7,6 +7,7 @@
 
 const listService = require('./services/list');
 const wxService = require('./services/wx');
+const clipboardService = require('./services/kvPair');
 const {logger} = require('./lib/utils');
 
 module.exports = function(app) {
@@ -41,6 +42,13 @@ module.exports = function(app) {
     res.json({
       message: '敬请期待',
       data: new Date()
+    });
+  });
+
+  app.get('/clipboard', async function(req, res) {
+    res.render('clipboard', {
+      title: '剪贴板',
+      data: await clipboardService.getById(4),
     });
   });
 };

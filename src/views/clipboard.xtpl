@@ -1,0 +1,17 @@
+{{extend ("./layout/default-layout") }}
+
+{{#block ("assets")}}
+<link rel="stylesheet" href="{{assets('/assets/css/clipboard.min.css')}}">
+{{/block}}
+
+{{#block ("content")}}
+<div class="clipboard-content">
+  <textarea>
+    {{data.value}}
+  </textarea>
+</div>
+{{/block}}
+
+{{#block ("script")}}
+<script src="{{assets('/assets/js/clipboard.min.js')}}"></script>
+{{/block}}

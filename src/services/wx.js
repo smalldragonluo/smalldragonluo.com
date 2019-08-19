@@ -13,7 +13,7 @@ const kvService = require('./kvPair');
 let clientCredential, credentialLastUpdateTime;
 // jsTicket 相关
 let jsTicket, ticketLastUpdateTime;
-const wxConfig = kvService.getObjectByKey('wxConfig');
+// const wxConfig = kvService.getObjectByKey('wxConfig');
 
 module.exports = {
   /**

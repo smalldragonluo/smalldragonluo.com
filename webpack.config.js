@@ -77,11 +77,11 @@ if (buildEnv === 'development') {
   };
   defaultConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
   // https://github.com/webpack-contrib/webpack-bundle-analyzer
-  defaultConfig.plugins.push(new (require('webpack-bundle-analyzer').BundleAnalyzerPlugin)({
-    analyzerHost: '127.0.0.1',
-    analyzerPort: 6001,
-    openAnalyzer: false
-  }));
+  // defaultConfig.plugins.push(new (require('webpack-bundle-analyzer').BundleAnalyzerPlugin)({
+  //   analyzerHost: '127.0.0.1',
+  //   analyzerPort: 6001,
+  //   openAnalyzer: false
+  // }));
 } else if (buildEnv === 'production') {
   defaultConfig.plugins.push(new UglifyJSPlugin({ sourceMap: false }));
   // defaultConfig.plugins.push(new (require('webpack-bundle-analyzer').BundleAnalyzerPlugin)({
@@ -155,6 +155,7 @@ const pcConfig = merge(defaultConfig, {
   entry: {
     bootstrap: path.join(srcDir, 'js/bootstrap.js'),
     index: path.join(srcDir, 'js/index.js'),
+    clipboard: path.join(srcDir, 'js/clipboard.js'),
   },
   module: {
     rules: [
@@ -176,8 +177,8 @@ const pcConfig = merge(defaultConfig, {
 
 module.exports = buildEnv === 'development' ?
   [
-    mobileConfig,
-    // pcConfig
+    // mobileConfig,
+    pcConfig
   ] : [
     mobileConfig,
     pcConfig

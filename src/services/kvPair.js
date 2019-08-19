@@ -30,5 +30,10 @@ module.exports = {
     } catch (e) {
       throw new Error(`value 解析失败， key: ${kv.key}`);
     }
-  }
+  },
+  async updateById(id, value) {
+    return kvPair.update({ value: value }, {
+      where: { id: id }
+    });
+  },
 };
