@@ -3,7 +3,8 @@
  */
 
 @r: 75rem;
-@hostname: 'https://cdn.smalldragonluo.com';
+//@hostname: 'https://cdn.smalldragonluo.com';
+@hostname: '';
 
 ::-moz-selection {
   color: #2e404a;
@@ -55,7 +56,7 @@
     border-radius: 16/@r;
     display: inline-block;
     vertical-align: top;
-    background: url("${@hostname}/assets/images/avatar.jpg");
+    background: url(~'@{hostname}/assets/images/avatar.jpg');
     background-size: cover;
   }
 
