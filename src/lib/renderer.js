@@ -14,7 +14,8 @@ module.exports = function(app) {
     return JSON.stringify(option.params[0]);
   });
   xtemplate.addCommand('assets', function(scope, option) {
-    return ENV === 'development' ? option.params[0] : `https://cdn.smalldragonluo.com${option.params[0]}`;
+    // return ENV === 'development' ? option.params[0] : `https://cdn.smalldragonluo.com${option.params[0]}`;
+    return option.params[0];
   });
 
   app.set('views', './src/views');
