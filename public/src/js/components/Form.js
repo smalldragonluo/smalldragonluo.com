@@ -7,7 +7,7 @@
 
 import React, { Component } from 'react';
 
-import styles from './Form.less';
+import './Form.less';
 
 export class Field extends Component {
   state = {

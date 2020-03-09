@@ -13,6 +13,7 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { GenerateSW } = require('workbox-webpack-plugin');
 const buildEnv = process.env.NODE_ENV;
 const cwd = __dirname;
 const srcDir = path.join(cwd, 'public', 'src');
@@ -65,6 +66,39 @@ const defaultConfig = {
       { from: './images/', to: path.join(distDir, 'images'), toType: 'dir' }
     ], {
       context: srcDir
+    }),
+    new GenerateSW({
+      inlineWorkboxRuntime: true,
+      clientsClaim: true,
+      skipWaiting: true,
+      cleanupOutdatedCaches: true,
+      swDest: './js/service-worker.js',
+      exclude: [/./],
+      navigationPreload: true,
+      runtimeCaching: [
+        {
+          urlPattern: /\/$/,
+          handler: 'StaleWhileRevalidate',
+          options: {
+            cacheName: 'page-cache',
+            expiration: {
+              maxEntries: 20,
+              maxAgeSeconds: 30 * 24 * 60 * 60,
+            },
+          },
+        },
+        {
+          urlPattern: /.+\.json$/,
+          handler: 'StaleWhileRevalidate',
+          options: {
+            cacheName: 'json-cache',
+            expiration: {
+              maxEntries: 50,
+              maxAgeSeconds: 30 * 24 * 60 * 60,
+            },
+          },
+        },
+      ]
     })
   ]
 };
@@ -177,8 +211,8 @@ const pcConfig = merge(defaultConfig, {
 
 module.exports = buildEnv === 'development' ?
   [
-    // mobileConfig,
-    pcConfig
+    mobileConfig,
+    // pcConfig
   ] : [
     mobileConfig,
     pcConfig

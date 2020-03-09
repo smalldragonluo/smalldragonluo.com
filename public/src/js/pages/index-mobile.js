@@ -6,12 +6,14 @@
 'use strict';
 
 import React, { Component } from 'react';
-import {hot} from 'react-hot-loader/root'
+import { hot } from 'react-hot-loader/root';
 import { ListView, PullToRefresh } from 'antd-mobile';
 import axios from 'axios';
 import { Toast } from 'antd-mobile';
-const {getRecentTime} = require('../lib/utils');
-import {API} from '../consts';
+import AddWidget from '../components/AddWidget';
+
+const { getRecentTime } = require('../lib/utils');
+import { API } from '../consts';
 
 import styles from './index-mobile.less';
 
@@ -20,7 +22,7 @@ class Index extends Component {
     dataSource: new ListView.DataSource({
       rowHasChanged: (row1, row2) => row1 !== row2,
     }),
-    isLoading: false
+    isLoading: false,
   };
 
   componentDidMount() {
@@ -48,7 +50,7 @@ class Index extends Component {
         params: {
           startPage,
           pageSize: 20,
-        }
+        },
       })
       .then(({ data }) => {
         this.setMoreData(startPage, data.data);
@@ -80,7 +82,7 @@ class Index extends Component {
 
     this.setState({
       dataSource: this.state.dataSource.cloneWithRows(this.mappedData),
-      isLoading: false
+      isLoading: false,
     });
   };
 
@@ -88,7 +90,7 @@ class Index extends Component {
     return (
       <div className={styles.post}>
         <div className="user">
-          <img className="avatar" src={item.user.avatar}/>
+          <img className="avatar" src={item.user.avatar} />
           <span className="nickname">{item.user.userName}</span>
           <span className="date">{item.createdAt}</span>
         </div>
@@ -112,6 +114,7 @@ class Index extends Component {
         renderFooter={() =>
           <div style={{ padding: 4, textAlign: 'center' }}>
             {this.state.isLoading ? '加载中' : '到底啦'}
+            <AddWidget />
           </div>
         }
         renderRow={this.renderItem}

@@ -13,6 +13,7 @@ import IndexTab from './pages/index-mobile';
 import MyTab from './pages/my-mobile';
 import { API } from './consts';
 import MicroEvent from './lib/event';
+import './lib/registerServiceWorker'
 
 import styles from './index-mobile.less';
 
@@ -41,18 +42,18 @@ export default class Index extends Component {
         icon: <Icon url={require('../images/home.svg')}/>,
         selectedIcon: <Icon url={require('../images/home_fill.svg')}/>
       },
-      {
-        name: 'research',
-        title: '探索',
-        icon: <Icon url={require('../images/category.svg')}/>,
-        selectedIcon: <Icon url={require('../images/category_fill.svg')}/>
-      },
-      {
-        name: 'message',
-        title: '消息',
-        icon: <Icon url={require('../images/comment.svg')}/>,
-        selectedIcon: <Icon url={require('../images/comment_fill.svg')}/>
-      },
+      // {
+      //   name: 'research',
+      //   title: '探索',
+      //   icon: <Icon url={require('../images/category.svg')}/>,
+      //   selectedIcon: <Icon url={require('../images/category_fill.svg')}/>
+      // },
+      // {
+      //   name: 'message',
+      //   title: '消息',
+      //   icon: <Icon url={require('../images/comment.svg')}/>,
+      //   selectedIcon: <Icon url={require('../images/comment_fill.svg')}/>
+      // },
       {
         name: 'my',
         title: '我',
@@ -91,6 +92,7 @@ export default class Index extends Component {
    * @return {*}
    */
   renderTab = (tabName) => {
+    console.log(this.state.currentTab, tabName);
     if (this.state.currentTab === tabName) {
       const TabComponent = tabComponents[tabName];
       return <TabComponent {...this.app}/>;

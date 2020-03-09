@@ -89,7 +89,7 @@ class My extends Component {
               </div>
               <div className="modal">
                 <div className="banner">
-                  <Logo size={70}/>
+                  <Logo size={70} {...this.props} />
                 </div>
                 <div className="form-body">
                   <Field
@@ -124,7 +124,7 @@ class My extends Component {
               </div>
               <div className="modal">
                 <div className="banner">
-                  <Logo size={70}/>
+                  <Logo size={70} {...this.props} />
                 </div>
                 <div className="form-body">
                   <Field

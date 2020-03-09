@@ -10,7 +10,7 @@ const path = require('path');
 const app = express();
 const http = require('http').Server(app);
 // const io = require('socket.io')(http);
-const {logger} = require('./lib/utils');
+const { logger } = require('./lib/utils');
 
 const router = express.Router();
 const configMiddleware = require('./middlewares/index');
@@ -27,13 +27,13 @@ if (app.get('env') === 'development') {
 
   // HMR
   app.use(webpackDevMiddleware(compiler, {
-    publicPath: (config.output || config[0].output).publicPath
+    publicPath: (config.output || config[0].output).publicPath,
   }));
   app.use(require('webpack-hot-middleware')(compiler));
-}
 
-// static（local only，online we use nginx）
-app.use(express.static(path.join(__dirname, '../public/build')));
+  // static（local only，online we use nginx）
+  app.use(express.static(path.join(__dirname, '../public/build')));
+}
 
 // set view engine
 mountRenderer(app);
@@ -50,7 +50,7 @@ configAPIRoutes(app, router);
 
 app.use(function(err, req, res, next) {
   logger.error(err.stack);
-  res.status(500).json({success: false});
+  res.status(500).json({ success: false });
 });
 
 http.listen(6001);
