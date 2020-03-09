@@ -8,7 +8,7 @@
 require('../less/global.less');
 require('../less/index.less');
 require('./lib/base');
-require('./lib/registerServiceWorker');
+// require('./lib/registerServiceWorker');
 
 const Tpl = require('./lib/tpl');
 const {getRecentTime, throttle} = require('./lib/utils');

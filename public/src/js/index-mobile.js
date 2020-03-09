@@ -13,7 +13,7 @@ import IndexTab from './pages/index-mobile';
 import MyTab from './pages/my-mobile';
 import { API } from './consts';
 import MicroEvent from './lib/event';
-import './lib/registerServiceWorker'
+// import './lib/registerServiceWorker'
 
 import styles from './index-mobile.less';
 
