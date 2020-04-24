@@ -16,15 +16,17 @@ module.exports = function(app) {
   // 分端渲染
   app.use(require('./renderContext'));
 
-  // CORS（API and local assets, online assets we use nginx）
-  app.use(function(req, res, next) {
-    if (req.headers.origin && req.headers.origin.match(/^https:\/\/blog.smalldragonluo.com/)) {
-      res.header('Access-Control-Allow-Origin', 'https://blog.smalldragonluo.com/');
-      res.header('Access-Control-Expose-Headers', 'Content-Length');
-      res.header('Access-Control-Allow-Headers', 'range');
-    }
-    next();
-  });
+  if (app.get('env') === 'development') {
+    // CORS（API and local assets, online assets we use nginx）
+    app.use(function(req, res, next) {
+      if (req.headers.origin && req.headers.origin.match(/^https:\/\/blog.smalldragonluo.com/)) {
+        res.header('Access-Control-Allow-Origin', 'https://blog.smalldragonluo.com/');
+        res.header('Access-Control-Expose-Headers', 'Content-Length');
+        res.header('Access-Control-Allow-Headers', 'range');
+      }
+      next();
+    });
+  }
 
   // session
   // app.use(require('./wxSession'));
